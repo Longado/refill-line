@@ -1,0 +1,22 @@
+[
+ {
+  "file": "/demo/01.wav",
+  "text": "Hi, this is Maria Lopez. My date of birth is March fourteenth, nineteen fifty eight.",
+  "seconds": 5.6
+ },
+ {
+  "file": "/demo/02.wav",
+  "text": "I need a refill on my blood pressure pill.",
+  "seconds": 2.2
+ },
+ {
+  "file": "/demo/03.wav",
+  "text": "The lisinopril one.",
+  "seconds": 1.3
+ },
+ {
+  "file": "/demo/04.wav",
+  "text": "Can I also get my hydro zine, but make it fifty milligrams this time?",
+  "seconds": 4.6
+ }
+]

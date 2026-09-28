@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refill Line — judge comparison</title>
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1f1e; --muted: #6b706d; --line: #e3e1da;
+    --fill: #1f8a4c; --ask: #b7791f; --decline: #c0392b; --accent: #2f5d8a; --flag: rgba(192,57,43,.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151716; --panel: #1d201f; --ink: #ecebe6; --muted: #9aa09c; --line: #2c302e;
+            --fill: #3fb56f; --ask: #e0a340; --decline: #e86456; --accent: #6aa3d8; --flag: rgba(232,100,86,.14); }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding-inline: 16px; padding-block: 24px 48px; }
+  h1 { margin: 0 0 4px; font-size: 24px; }
+  .sub { margin: 0 0 20px; color: var(--muted); max-width: 70ch; }
+  .sub a { color: var(--accent); }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 28px 0 10px; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 4px 16px 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; padding-right: 14px; }
+  .judge { font-weight: 600; }
+  .model { color: var(--muted); font-size: 12px; display: block; font-weight: 400; }
+  .fill { color: var(--fill); } .ask { color: var(--ask); } .decline { color: var(--decline); } .error { color: var(--decline); }
+  .miss { text-decoration: underline; text-decoration-style: wavy; text-underline-offset: 3px; }
+  tr.unsafe { background: var(--flag); }
+  .said { max-width: 40ch; }
+  .said small { color: var(--muted); display: block; }
+  .legend { color: var(--muted); font-size: 13px; margin-top: 10px; }
+  .scroll { overflow-x: auto; }
+  .note { color: var(--muted); font-size: 13px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>One gate, three judges</h1>
+  <p class="sub">Every judgment on this call line is a probability. Here the same 24 spoken requests run through the same
+     gate, the same questions and the same thresholds — only the judge changes: Jev, a model that answers judgments and
+     nothing else, against two ordinary chat models asked for exactly the same probabilities.</p>
+
+  <h2>Per judge</h2>
+  <section class="scroll"><table id="summary"></table></section>
+  <p class="note" id="method"></p>
+
+  <h2>Per request</h2>
+  <section class="scroll"><table id="rows"></table></section>
+  <p class="legend">Wavy underline: the decision is not the one this request should get. Red row: it filled a prescription
+     that should have been questioned or refused — the error that matters in a pharmacy.</p>
+</div>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const money = (n) => n == null ? "—" : "$" + (n < 0.001 ? n.toFixed(6) : n.toFixed(4));
+
+fetch("/api/comparison").then((r) => r.json()).then(render).catch(() => {
+  $("summary").innerHTML = "<tr><td>No comparison has been run yet. Run <code>uv run python evals/compare.py</code>.</td></tr>";
+});
+
+function render(d) {
+  const names = Object.keys(d.judges);
+  const jev = d.judges.jev;
+  $("summary").innerHTML = `<tr><th>Judge</th><th class="num">Decides as expected</th><th class="num">Unsafe fills</th>
+      <th class="num">Median latency</th><th class="num">Slowest</th><th class="num">Cost per call</th><th class="num">Agrees with Jev</th></tr>` +
+    names.map((n) => {
+      const j = d.judges[n];
+      const ratio = n === "jev" ? "" : ` <span class="model">${(j.median_latency_s / jev.median_latency_s).toFixed(1)}x slower · ${(j.cost_per_call / jev.cost_per_call).toFixed(0)}x dearer</span>`;
+      return `<tr><td class="judge">${esc(n)}<span class="model">${esc(j.model)}</span></td>
+        <td class="num">${j.matches_expected}/${j.n}</td>
+        <td class="num">${j.unsafe}</td>
+        <td class="num">${j.median_latency_s}s${ratio}</td>
+        <td class="num">${j.max_latency_s}s</td>
+        <td class="num">${money(j.cost_per_call)}</td>
+        <td class="num">${n === "jev" ? "—" : d.agreement[n] + "/" + d.rows.length}</td></tr>`;
+    }).join("");
+
+  $("method").textContent = `One run of ${d.rows.length} requests on ${d.generated_at.slice(0, 10)}. `
+    + `The chat models are asked for the same probabilities Jev returns, with no reasoning text, using prompt ${d.prompt_version}; `
+    + `gpt-5-mini keeps its own reasoning on, deepseek runs with reasoning off. Costs are what the provider billed for these calls.`;
+
+  $("rows").innerHTML = `<tr><th>The caller says</th><th>Should be</th>${names.map((n) => `<th>${esc(n)}</th>`).join("")}</tr>` +
+    d.rows.map((r) => {
+      const unsafe = names.some((n) => r[n].decision !== r.expect && r[n].decision === "fill");
+      return `<tr class="${unsafe ? "unsafe" : ""}">
+        <td class="said">"${esc(r.request)}"<small>${esc(r.set)}</small></td>
+        <td>${esc(r.expect)}</td>
+        ${names.map((n) => `<td class="${esc(r[n].decision)} ${r[n].decision === r.expect ? "" : "miss"}">${esc(r[n].decision)}
+           <span class="model">${esc(r[n].reason)} · ${r[n].latency_s}s</span></td>`).join("")}</tr>`;
+    }).join("");
+}
+</script>
+</body>
+</html>

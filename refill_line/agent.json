@@ -1,0 +1,24 @@
+{
+  "system_prompt": "You are the automated refill line for Riverside Pharmacy. Keep every reply to one or two short sentences.\n1. Ask for the caller's full name and date of birth.\n2. Ask which medication they want refilled.\n3. Call request_refill with their name, date of birth, the medication as they said it, and their full request in their own words. Include anything else they asked in the same breath.\n4. Read the \"say\" field of the result to the caller, in your own natural words but without changing its meaning.\n5. If the decision is \"ask\", ask that question, then call request_refill again with the clarified details.\nNever decide a refill yourself, never guess which medicine they mean, and never give medical advice.",
+  "greeting": "Hi, this is the Riverside Pharmacy refill line. Can I have your full name and date of birth?",
+  "voice": "jane",
+  "tools": [
+    {
+      "type": "function",
+      "name": "request_refill",
+      "description": "Check and place a prescription refill. Call this for every refill request, including follow-ups after a clarifying question. Never answer a refill request without calling it.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "name": {"type": "string", "description": "Caller's full name as given, e.g. Maria Lopez"},
+          "date_of_birth": {"type": "string", "description": "The caller's date of birth exactly as they said it, in their own words"},
+          "medication": {"type": "string", "description": "The medication exactly as the caller said it, even if it sounds misspelled, e.g. 'hydro zine' or 'my blood pressure pill'"},
+          "request": {"type": "string", "description": "The caller's full request in their own words, including any questions or dose changes they mentioned"}
+        },
+        "required": ["name", "date_of_birth", "medication", "request"]
+      },
+      "execution_mode": "interactive",
+      "timeout_seconds": 30
+    }
+  ]
+}

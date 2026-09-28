@@ -1,0 +1,1534 @@
+{
+ "generated_at": "2026-09-24T06:14:44+00:00",
+ "prompt_version": "baseline_judge/1",
+ "judges": {
+  "jev": {
+   "model": "typesafe/jev-1.13-20260917",
+   "n": 24,
+   "matches_expected": 22,
+   "median_latency_s": 1.18,
+   "max_latency_s": 2.15,
+   "cost_total": 0.001097,
+   "cost_per_call": 4.769e-05,
+   "errors": 0,
+   "unsafe": 0
+  },
+  "gpt5_mini": {
+   "model": "openai/gpt-5-mini",
+   "n": 24,
+   "matches_expected": 20,
+   "median_latency_s": 9.29,
+   "max_latency_s": 13.98,
+   "cost_total": 0.044178,
+   "cost_per_call": 0.00184075,
+   "errors": 0,
+   "unsafe": 0
+  },
+  "deepseek_flash": {
+   "model": "deepseek/deepseek-v4-flash-0731",
+   "n": 24,
+   "matches_expected": 23,
+   "median_latency_s": 4.2,
+   "max_latency_s": 17.98,
+   "cost_total": 0.003492,
+   "cost_per_call": 0.00014551,
+   "errors": 0,
+   "unsafe": 1
+  }
+ },
+ "rows": [
+  {
+   "set": "golden",
+   "medication": "lisinopril",
+   "request": "Hi, I need my lisinopril refilled please",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.99,
+     "may_mean_hydralazine_25": 0.08,
+     "may_mean_atorvastatin_20": 0.05,
+     "may_mean_hydroxyzine_25": 0.08,
+     "named_drug": 0.98,
+     "dose_change": 0.03,
+     "advice": 0.02
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 1.16,
+    "cost": 4.8846e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.99,
+     "may_mean_hydralazine_25": 0.01,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.01,
+     "named_drug": 0.99,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 8.07,
+    "cost": 0.002007,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 5.1,
+    "cost": 0.00015274,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydro zine",
+   "request": "can I get more of the hydro zine for my itching",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.04,
+     "may_mean_hydralazine_25": 0.32,
+     "may_mean_atorvastatin_20": 0.03,
+     "may_mean_hydroxyzine_25": 0.97,
+     "named_drug": 0.98,
+     "dose_change": 0.13,
+     "advice": 0.07
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 1.58,
+    "cost": 4.8846e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.01,
+     "may_mean_hydralazine_25": 0.03,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 13.98,
+    "cost": 0.001977,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 3.98,
+    "cost": 8.8652e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "lysine april",
+   "request": "refill on the lysine april",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.75,
+     "may_mean_hydralazine_25": 0.35,
+     "may_mean_atorvastatin_20": 0.18,
+     "may_mean_hydroxyzine_25": 0.59,
+     "named_drug": 0.93,
+     "dose_change": 0.06,
+     "advice": 0.03
+    },
+    "say": "Just to be sure: did you mean Lisinopril 10 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 1.34,
+    "cost": 4.8594e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.95,
+     "may_mean_hydralazine_25": 0.03,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.04,
+     "named_drug": 0.95,
+     "dose_change": 0.01,
+     "advice": 0.01
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 7.9,
+    "cost": 0.0017395,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.9,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.1,
+     "may_mean_hydroxyzine_25": 0.1,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 2.39,
+    "cost": 0.00015218,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "blood pressure pill",
+   "request": "just refill my blood pressure pill",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.96,
+     "may_mean_hydralazine_25": 0.89,
+     "may_mean_atorvastatin_20": 0.03,
+     "may_mean_hydroxyzine_25": 0.04,
+     "named_drug": 0.03,
+     "dose_change": 0.04,
+     "advice": 0.03
+    },
+    "say": "Just to be sure: did you mean Lisinopril 10 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 1.13,
+    "cost": 4.8552e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.95,
+     "may_mean_hydralazine_25": 0.95,
+     "may_mean_atorvastatin_20": 0.02,
+     "may_mean_hydroxyzine_25": 0.02,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Lisinopril 10 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 8.15,
+    "cost": 0.00176125,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 1.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Lisinopril 10 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 8.57,
+    "cost": 9.2312e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydro",
+   "request": "I need the hydro one refilled",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.2,
+     "may_mean_hydralazine_25": 0.77,
+     "may_mean_atorvastatin_20": 0.13,
+     "may_mean_hydroxyzine_25": 0.86,
+     "named_drug": 0.93,
+     "dose_change": 0.04,
+     "advice": 0.03
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 1.04,
+    "cost": 4.8552e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.85,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.8,
+     "named_drug": 0.9,
+     "dose_change": 0.01,
+     "advice": 0.01
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 11.59,
+    "cost": 0.00170725,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.4,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.9,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Hydroxyzine 25 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 5.51,
+    "cost": 0.000131019,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "the white one",
+   "request": "the little white one I take every morning",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "confirm_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.8,
+     "may_mean_hydralazine_25": 0.3,
+     "may_mean_atorvastatin_20": 0.18,
+     "may_mean_hydroxyzine_25": 0.29,
+     "named_drug": 0.04,
+     "dose_change": 0.06,
+     "advice": 0.08
+    },
+    "say": "Just to confirm, that's your Lisinopril 10 mg, one tablet once daily?",
+    "pharmacist_callback": null,
+    "latency_s": 1.05,
+    "cost": 4.8636e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "confirm_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.93,
+     "may_mean_hydralazine_25": 0.18,
+     "may_mean_atorvastatin_20": 0.05,
+     "may_mean_hydroxyzine_25": 0.03,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to confirm, that's your Lisinopril 10 mg, one tablet once daily?",
+    "pharmacist_callback": null,
+    "latency_s": 9.74,
+    "cost": 0.00193175,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.8,
+     "may_mean_hydralazine_25": 0.6,
+     "may_mean_atorvastatin_20": 0.1,
+     "may_mean_hydroxyzine_25": 0.1,
+     "named_drug": 0.3,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Lisinopril 10 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 5.26,
+    "cost": 0.00010548,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "metformin",
+   "request": "refill my metformin",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "judge_unavailable",
+    "probabilities": {},
+    "say": "I can't process this refill automatically right now. A pharmacist will call you back today.",
+    "pharmacist_callback": null
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "not_on_file",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.02,
+     "may_mean_atorvastatin_20": 0.06,
+     "may_mean_hydroxyzine_25": 0.03,
+     "named_drug": 0.99,
+     "dose_change": 0.01,
+     "advice": 0.01
+    },
+    "say": "I don't see that on your profile. The prescriptions I have are Lisinopril 10 mg, Hydralazine 25 mg, Atorvastatin 20 mg or Hydroxyzine 25 mg. Which one would you like?",
+    "pharmacist_callback": null,
+    "latency_s": 12.92,
+    "cost": 0.00232275,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "not_on_file",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "I don't see that on your profile. The prescriptions I have are Lisinopril 10 mg, Hydralazine 25 mg, Atorvastatin 20 mg or Hydroxyzine 25 mg. Which one would you like?",
+    "pharmacist_callback": null,
+    "latency_s": 2.76,
+    "cost": 6.876e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydroxyzine",
+   "request": "hydroxyzine refill, and can you make it fifty milligrams, twenty five isn't working",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.04,
+     "may_mean_hydralazine_25": 0.3,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.98,
+     "dose_change": 0.97,
+     "advice": 0.47
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime? I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.18,
+    "cost": 4.9224e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.01,
+     "may_mean_hydralazine_25": 0.2,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.99,
+     "named_drug": 0.99,
+     "dose_change": 0.99,
+     "advice": 0.02
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 12.06,
+    "cost": 0.00285275,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 1.0,
+     "advice": 0.0
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 1.71,
+    "cost": 0.00010216,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "lisinopril",
+   "request": "lisinopril, but could I get a ninety day supply this time instead",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.98,
+     "may_mean_hydralazine_25": 0.06,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.05,
+     "named_drug": 0.98,
+     "dose_change": 0.85,
+     "advice": 0.03
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Lisinopril 10 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 1.63,
+    "cost": 4.9014e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.02,
+     "may_mean_atorvastatin_20": 0.02,
+     "may_mean_hydroxyzine_25": 0.01,
+     "named_drug": 1.0,
+     "dose_change": 1.0,
+     "advice": 0.0
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Lisinopril 10 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 9.68,
+    "cost": 0.001652,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 1.0,
+     "advice": 0.0
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Lisinopril 10 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 3.98,
+    "cost": 6.954e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydralazine",
+   "request": "I need my hydralazine",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "no_refills",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.1,
+     "may_mean_hydralazine_25": 0.98,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.37,
+     "named_drug": 0.98,
+     "dose_change": 0.04,
+     "advice": 0.04
+    },
+    "say": "There are no refills left on Hydralazine 25 mg. I'll send a renewal request to Dr. Chen.",
+    "pharmacist_callback": null,
+    "latency_s": 1.73,
+    "cost": 4.8552e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "no_refills",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.99,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.15,
+     "named_drug": 0.99,
+     "dose_change": 0.01,
+     "advice": 0.01
+    },
+    "say": "There are no refills left on Hydralazine 25 mg. I'll send a renewal request to Dr. Chen.",
+    "pharmacist_callback": null,
+    "latency_s": 9.3,
+    "cost": 0.00204925,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "no_refills",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.1,
+     "may_mean_hydralazine_25": 1.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.2,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "There are no refills left on Hydralazine 25 mg. I'll send a renewal request to Dr. Chen.",
+    "pharmacist_callback": null,
+    "latency_s": 3.63,
+    "cost": 0.00025982,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "atorvastatin",
+   "request": "refill the atorvastatin please",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.05,
+     "may_mean_hydralazine_25": 0.05,
+     "may_mean_atorvastatin_20": 0.99,
+     "may_mean_hydroxyzine_25": 0.06,
+     "named_drug": 0.98,
+     "dose_change": 0.03,
+     "advice": 0.02
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 1.89,
+    "cost": 4.8594e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 1.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 6.47,
+    "cost": 0.0015375,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 1.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 2.18,
+    "cost": 0.000125488,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "cholesterol medicine",
+   "request": "my cholesterol medicine please",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.04,
+     "may_mean_hydralazine_25": 0.03,
+     "may_mean_atorvastatin_20": 0.97,
+     "may_mean_hydroxyzine_25": 0.04,
+     "named_drug": 0.04,
+     "dose_change": 0.04,
+     "advice": 0.03
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 0.99,
+    "cost": 4.851e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 1.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 5.39,
+    "cost": 0.00150075,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 1.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days.",
+    "pharmacist_callback": null,
+    "latency_s": 12.55,
+    "cost": 8.0098e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydroxyzine",
+   "request": "hydroxyzine please, and is it okay to take it with a glass of wine",
+   "expect": "fill",
+   "expect_callback": true,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.04,
+     "may_mean_hydralazine_25": 0.28,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.99,
+     "named_drug": 0.98,
+     "dose_change": 0.04,
+     "advice": 0.97
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.27,
+    "cost": 4.9098e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.01,
+     "may_mean_hydralazine_25": 0.7,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.99,
+     "named_drug": 0.99,
+     "dose_change": 0.01,
+     "advice": 0.99
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 10.67,
+    "cost": 0.0016685,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.1,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 17.98,
+    "cost": 0.00025828,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "lisinopril",
+   "request": "refill lisinopril, same as always",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.98,
+     "may_mean_hydralazine_25": 0.08,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.07,
+     "named_drug": 0.98,
+     "dose_change": 0.03,
+     "advice": 0.02
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 0.94,
+    "cost": 4.8762e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.01,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.01,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 8.5,
+    "cost": 0.0017845,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 4.41,
+    "cost": 9.2464e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydroxyzine",
+   "request": "yeah I'm running low on hydroxyzine, can you refill it",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.05,
+     "may_mean_hydralazine_25": 0.36,
+     "may_mean_atorvastatin_20": 0.06,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.98,
+     "dose_change": 0.03,
+     "advice": 0.03
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 1.32,
+    "cost": 4.8972e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.9,
+     "may_mean_atorvastatin_20": 0.02,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.99,
+     "dose_change": 0.01,
+     "advice": 0.01
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 12.36,
+    "cost": 0.00149325,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.2,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 4.2,
+    "cost": 0.00024,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "the one for sleep",
+   "request": "the one I take at night",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.18,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.64,
+     "may_mean_hydroxyzine_25": 0.55,
+     "named_drug": 0.05,
+     "dose_change": 0.07,
+     "advice": 0.11
+    },
+    "say": "Just to be sure: did you mean Atorvastatin 20 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 1.31,
+    "cost": 4.8594e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.2,
+     "may_mean_hydralazine_25": 0.05,
+     "may_mean_atorvastatin_20": 0.95,
+     "may_mean_hydroxyzine_25": 0.7,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Atorvastatin 20 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 10.32,
+    "cost": 0.0022335,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.1,
+     "may_mean_hydralazine_25": 0.1,
+     "may_mean_atorvastatin_20": 0.7,
+     "may_mean_hydroxyzine_25": 0.6,
+     "named_drug": 0.1,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Atorvastatin 20 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 3.69,
+    "cost": 0.000264,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "lisinopril",
+   "request": "lisinopril, and should I stop it before my surgery next week",
+   "expect": "fill",
+   "expect_callback": true,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.99,
+     "may_mean_hydralazine_25": 0.08,
+     "may_mean_atorvastatin_20": 0.05,
+     "may_mean_hydroxyzine_25": 0.06,
+     "named_drug": 0.98,
+     "dose_change": 0.03,
+     "advice": 0.98
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.0,
+    "cost": 4.8972e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.99,
+     "may_mean_hydralazine_25": 0.01,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.01,
+     "named_drug": 0.99,
+     "dose_change": 0.01,
+     "advice": 0.99
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 6.25,
+    "cost": 0.00145575,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 1.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Lisinopril 10 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 2.23,
+    "cost": 0.0001096112,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "golden",
+   "medication": "hydroxyzine",
+   "request": "hydroxyzine but can I take two at a time now",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.05,
+     "may_mean_hydralazine_25": 0.26,
+     "may_mean_atorvastatin_20": 0.04,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.98,
+     "dose_change": 0.91,
+     "advice": 0.97
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime? I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.19,
+    "cost": 4.8888e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.8,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.99,
+     "dose_change": 0.98,
+     "advice": 0.98
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 7.81,
+    "cost": 0.00169725,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 1.0,
+     "advice": 1.0
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime? I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 6.05,
+    "cost": 0.000521312,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "met for men",
+   "request": "I need a refill on my met for men",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.92,
+     "may_mean_sertraline_50": 0.12,
+     "named_drug": 0.91,
+     "dose_change": 0.05,
+     "advice": 0.03
+    },
+    "say": "Done. Your Metformin 500 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 2.15,
+    "cost": 3.612e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.98,
+     "may_mean_sertraline_50": 0.02,
+     "named_drug": 0.95,
+     "dose_change": 0.02,
+     "advice": 0.01
+    },
+    "say": "Done. Your Metformin 500 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 6.76,
+    "cost": 0.0012905,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.7,
+     "may_mean_sertraline_50": 0.1,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Metformin 500 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 3.32,
+    "cost": 4.902e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "zoloft",
+   "request": "can you refill my zoloft",
+   "expect": "fill",
+   "expect_callback": null,
+   "jev": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.03,
+     "may_mean_sertraline_50": 0.97,
+     "named_drug": 0.98,
+     "dose_change": 0.04,
+     "advice": 0.03
+    },
+    "say": "Done. Your Sertraline 50 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 0.95,
+    "cost": 3.6036e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.01,
+     "may_mean_sertraline_50": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Sertraline 50 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 6.41,
+    "cost": 0.001134,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_metformin_500": 0.0,
+     "may_mean_sertraline_50": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Sertraline 50 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 4.4,
+    "cost": 6.4978e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "hydroxyzine",
+   "request": "refill hydroxyzine, oh and can you double the dose, my doctor said it's fine",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.05,
+     "may_mean_hydralazine_25": 0.32,
+     "may_mean_atorvastatin_20": 0.05,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.98,
+     "dose_change": 0.93,
+     "advice": 0.8
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime? I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.44,
+    "cost": 4.9224e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.9,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.98,
+     "named_drug": 0.99,
+     "dose_change": 0.99,
+     "advice": 0.98
+    },
+    "say": "Just to be sure: did you mean Hydralazine 25 mg or Hydroxyzine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 12.61,
+    "cost": 0.00218875,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "dose_change",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.98,
+     "advice": 0.0
+    },
+    "say": "I can't change the dose over the phone. I'll ask Dr. Chen to review it. Would you like your current Hydroxyzine 25 mg refilled in the meantime?",
+    "pharmacist_callback": null,
+    "latency_s": 2.33,
+    "cost": 0.0001157356,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "atorvastatin",
+   "request": "is it bad if I skip my atorvastatin for a week? also refill it",
+   "expect": "decline",
+   "expect_callback": null,
+   "jev": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.04,
+     "may_mean_hydralazine_25": 0.05,
+     "may_mean_atorvastatin_20": 0.98,
+     "may_mean_hydroxyzine_25": 0.06,
+     "named_drug": 0.98,
+     "dose_change": 0.04,
+     "advice": 0.98
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 0.92,
+    "cost": 4.9014e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.02,
+     "may_mean_hydralazine_25": 0.02,
+     "may_mean_atorvastatin_20": 0.99,
+     "may_mean_hydroxyzine_25": 0.02,
+     "named_drug": 0.99,
+     "dose_change": 0.0,
+     "advice": 0.99
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 9.13,
+    "cost": 0.001682,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "decline",
+    "reason": "too_early",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 1.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 1.0
+    },
+    "say": "Atorvastatin 20 mg was filled 9 days ago, so it's too early. You can refill it in 74 days. I can't give medical advice, so a pharmacist will call you about your question.",
+    "pharmacist_callback": true,
+    "latency_s": 1.5,
+    "cost": 0.00010636,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "allergy pill",
+   "request": "the pill for my itchy skin",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "confirm_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.03,
+     "may_mean_hydralazine_25": 0.05,
+     "may_mean_atorvastatin_20": 0.03,
+     "may_mean_hydroxyzine_25": 0.94,
+     "named_drug": 0.06,
+     "dose_change": 0.05,
+     "advice": 0.1
+    },
+    "say": "Just to confirm, that's your Hydroxyzine 25 mg, one tablet as needed for itching?",
+    "pharmacist_callback": null,
+    "latency_s": 1.14,
+    "cost": 4.8594e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "confirm_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.01,
+     "may_mean_hydralazine_25": 0.05,
+     "may_mean_atorvastatin_20": 0.01,
+     "may_mean_hydroxyzine_25": 0.99,
+     "named_drug": 0.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to confirm, that's your Hydroxyzine 25 mg, one tablet as needed for itching?",
+    "pharmacist_callback": null,
+    "latency_s": 9.11,
+    "cost": 0.00198925,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "fill",
+    "reason": "ok",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 1.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Done. Your Hydroxyzine 25 mg will be ready for pickup after 4 pm today.",
+    "pharmacist_callback": false,
+    "latency_s": 4.64,
+    "cost": 0.0001498,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  },
+  {
+   "set": "heldout",
+   "medication": "hydrochlorothiazide",
+   "request": "refill hydrochlorothiazide",
+   "expect": "ask",
+   "expect_callback": null,
+   "jev": {
+    "decision": "ask",
+    "reason": "not_on_file",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.11,
+     "may_mean_hydralazine_25": 0.15,
+     "may_mean_atorvastatin_20": 0.06,
+     "may_mean_hydroxyzine_25": 0.37,
+     "named_drug": 0.98,
+     "dose_change": 0.04,
+     "advice": 0.03
+    },
+    "say": "I don't see that on your profile. The prescriptions I have are Lisinopril 10 mg, Hydralazine 25 mg, Atorvastatin 20 mg or Hydroxyzine 25 mg. Which one would you like?",
+    "pharmacist_callback": null,
+    "latency_s": 0.95,
+    "cost": 4.8762e-05,
+    "model": "typesafe/jev-1.13-20260917"
+   },
+   "gpt5_mini": {
+    "decision": "ask",
+    "reason": "which_medication",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.6,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.75,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "Just to be sure: did you mean Hydroxyzine 25 mg or Hydralazine 25 mg?",
+    "pharmacist_callback": null,
+    "latency_s": 9.29,
+    "cost": 0.002522,
+    "model": "openai/gpt-5-mini",
+    "prompt_version": "baseline_judge/1"
+   },
+   "deepseek_flash": {
+    "decision": "ask",
+    "reason": "not_on_file",
+    "probabilities": {
+     "may_mean_lisinopril_10": 0.0,
+     "may_mean_hydralazine_25": 0.0,
+     "may_mean_atorvastatin_20": 0.0,
+     "may_mean_hydroxyzine_25": 0.0,
+     "named_drug": 1.0,
+     "dose_change": 0.0,
+     "advice": 0.0
+    },
+    "say": "I don't see that on your profile. The prescriptions I have are Lisinopril 10 mg, Hydralazine 25 mg, Atorvastatin 20 mg or Hydroxyzine 25 mg. Which one would you like?",
+    "pharmacist_callback": null,
+    "latency_s": 5.12,
+    "cost": 9.235e-05,
+    "model": "deepseek/deepseek-v4-flash-0731",
+    "prompt_version": "baseline_judge/1"
+   }
+  }
+ ],
+ "agreement": {
+  "gpt5_mini": 18,
+  "deepseek_flash": 21
+ }
+}

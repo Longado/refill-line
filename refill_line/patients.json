@@ -1,0 +1,33 @@
+{
+  "_note": "Fictional demo patients. No real people or real pharmacy data.",
+  "patients": [
+    {
+      "id": "p1",
+      "name": "Maria Lopez",
+      "date_of_birth": "1958-03-14",
+      "prescriber": "Dr. Chen",
+      "prescriptions": [
+        {"id": "lisinopril_10", "drug": "Lisinopril", "strength": "10 mg", "directions": "one tablet once daily", "for": "blood pressure",
+         "refills_left": 3, "days_supply": 30, "last_fill_days_ago": 26},
+        {"id": "hydralazine_25", "drug": "Hydralazine", "strength": "25 mg", "directions": "one tablet three times daily", "for": "blood pressure",
+         "refills_left": 0, "days_supply": 30, "last_fill_days_ago": 28},
+        {"id": "atorvastatin_20", "drug": "Atorvastatin", "strength": "20 mg", "directions": "one tablet at bedtime", "for": "cholesterol",
+         "refills_left": 5, "days_supply": 90, "last_fill_days_ago": 9},
+        {"id": "hydroxyzine_25", "drug": "Hydroxyzine", "strength": "25 mg", "directions": "one tablet as needed for itching", "for": "itching",
+         "refills_left": 2, "days_supply": 30, "last_fill_days_ago": 80}
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "James Carter",
+      "date_of_birth": "1971-11-02",
+      "prescriber": "Dr. Okafor",
+      "prescriptions": [
+        {"id": "metformin_500", "drug": "Metformin", "strength": "500 mg", "directions": "one tablet twice daily with meals", "for": "diabetes",
+         "refills_left": 4, "days_supply": 30, "last_fill_days_ago": 27},
+        {"id": "sertraline_50", "drug": "Sertraline", "strength": "50 mg", "directions": "one tablet once daily", "for": "depression",
+         "refills_left": 1, "days_supply": 30, "last_fill_days_ago": 25}
+      ]
+    }
+  ]
+}
