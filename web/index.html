@@ -102,6 +102,7 @@ fetch("/api/config").then((r) => r.json()).then((c) => {
 
 let ws, audioCtx, stream, playAt = 0, lastEvent = null, pending = [];
 let mix, recorder, recorded = [];
+let demoSilenceTimer = null, sendingCallerAudio = false;
 
 function out() {  // speakers + the recording tap
   return mix ? [audioCtx.destination, mix] : [audioCtx.destination];
@@ -171,6 +172,7 @@ async function start() {
     const { token, error } = await tr.json();
     if (!tr.ok) throw new Error(error);
     audioCtx = new AudioContext();
+    playAt = 0;
     await audioCtx.resume();
     await audioCtx.audioWorklet.addModule("/pcm-processor.js");
     stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: false } });
@@ -223,6 +225,7 @@ async function demoCall() {
     const { token, error } = await tr.json();
     if (!tr.ok) throw new Error(error);
     audioCtx = new AudioContext({ sampleRate: 24000 });
+    playAt = 0;
     await audioCtx.resume();
     mix = audioCtx.createMediaStreamDestination();
     recorder = new MediaRecorder(mix.stream);
@@ -250,13 +253,17 @@ async function demoCall() {
       }
     };
     ws.onclose = () => finishDemo();
-    const waitForReply = (ms) => new Promise((res) => {
+    const waitForReply = (ms) => new Promise((res, reject) => {
       const done = () => { clearTimeout(t); replied = null; res(); };
-      const t = setTimeout(done, ms);
+      const t = setTimeout(() => { replied = null; reject(new Error("The agent did not finish its reply in time.")); }, ms);
       replied = done;
     });
     while (!ready) await new Promise((r) => setTimeout(r, 100));
-    await waitForReply(20000);  // the greeting
+    // Keep the same continuous input stream as a microphone, including during the greeting.
+    const silence = btoa(String.fromCharCode(...new Uint8Array(960)));
+    demoSilenceTimer = setInterval(() => !sendingCallerAudio && ws?.readyState === WebSocket.OPEN
+      && ws.send(JSON.stringify({ type: "input.audio", audio: silence })), 20);
+    await waitForReply(60000);  // never start the caller before the greeting finishes
 
     for (const step of script) {
       const buf = await fetch(step.file).then((r) => r.arrayBuffer());
@@ -269,6 +276,7 @@ async function demoCall() {
       line("you", "Caller: " + step.text);
       const step20ms = 480;
       const startedAt = performance.now();
+      sendingCallerAudio = true;
       for (let i = 0, n = 0; i < pcm.length; i += step20ms, n++) {
         const slice = pcm.subarray(i, i + step20ms);
         let bin = "";
@@ -278,22 +286,19 @@ async function demoCall() {
         const due = startedAt + (n + 1) * 20;
         await new Promise((r) => setTimeout(r, Math.max(0, due - performance.now())));
       }
-      const silence = btoa(String.fromCharCode(...new Uint8Array(step20ms * 2)));
-      const quiet = setInterval(() => ws.readyState === WebSocket.OPEN
-        && ws.send(JSON.stringify({ type: "input.audio", audio: silence })), 20);
-      await waitForReply(45000);
-      clearInterval(quiet);
+      sendingCallerAudio = false;
+      await waitForReply(90000);  // streamed voice replies can take longer than the judgment itself
       await new Promise((r) => setTimeout(r, 600));
     }
     if (ws.readyState === WebSocket.OPEN) ws.send(JSON.stringify({ type: "session.end" }));
     setTimeout(finishDemo, 1500);
   } catch (e) {
-    $("status").textContent = "Could not start: " + e.message;
-    finishDemo();
+    finishDemo("Could not complete scripted call: " + e.message);
   }
 }
 
-function finishDemo() {
+function finishDemo(message = "Scripted call finished") {
+  clearInterval(demoSilenceTimer); demoSilenceTimer = null; sendingCallerAudio = false;
   if (recorder && recorder.state !== "inactive") {
     recorder.onstop = () => {
       const url = URL.createObjectURL(new Blob(recorded, { type: "audio/webm" }));
@@ -307,7 +312,7 @@ function finishDemo() {
   mix = null;
   stop(false);
   $("demo").disabled = false;
-  $("status").textContent = "Scripted call finished";
+  $("status").textContent = message;
 }
 
 function stop(sendEnd = true) {
